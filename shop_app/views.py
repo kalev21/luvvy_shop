@@ -68,7 +68,11 @@ def logout_user(request):
 
 
 def basket(request):
-    return render(request, 'shop_app/basket.html')
+    basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
+    context = {
+        'products': basket_items,
+    }
+    return render(request, 'shop_app/basket.html', context)
 
 
 def basket_add(request, product_id=None):
@@ -85,6 +89,13 @@ def basket_add(request, product_id=None):
         cart.quantity += 1
         cart.save()
         return HttpResponseRedirect(reverse('shop_app:product'))
+
+
+def basket_delete(request, id=None):
+    cart = Basket.objects.get(id=id)
+    cart.delete()
+    return HttpResponseRedirect(reverse('shop_app:basket'))
+
 
 
 
