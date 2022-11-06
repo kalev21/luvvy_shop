@@ -71,11 +71,14 @@ def basket(request):
     basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
     context = {
         'products': basket_items,
+        'baskets': Basket.objects.filter(user=request.user)
     }
     return render(request, 'shop_app/basket.html', context)
 
 
 def basket_add(request, product_id=None):
+    """Добавление товаров в Корзину"""
+
     product = ProductModel.objects.get(id=product_id)
     baskets = Basket.objects.filter(user=request.user, product=product)
 
@@ -92,6 +95,8 @@ def basket_add(request, product_id=None):
 
 
 def basket_delete(request, id=None):
+    """Удаление товаров из корзины"""
+
     cart = Basket.objects.get(id=id)
     cart.delete()
     return HttpResponseRedirect(reverse('shop_app:basket'))

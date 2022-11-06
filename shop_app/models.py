@@ -20,6 +20,7 @@ class CategoryModel(models.Model):
 
 
 class ProductModel(models.Model):
+    """Модель каталога товаров"""
     category = models.ForeignKey(CategoryModel, related_name='products', on_delete=models.CASCADE)
     name = models.CharField('Наименование', max_length=50, db_index=True)
     slug = models.SlugField('URL', max_length=50, db_index=True)
@@ -46,6 +47,7 @@ class ProductModel(models.Model):
 
 
 class FeedBackModel(models.Model):
+    """Модель обратной связи"""
     name = models.CharField('Имя', max_length=30)
     email = models.EmailField('E-mail')
     phone = models.CharField('Номер телефона', max_length=15)
@@ -77,6 +79,7 @@ class UserDressModel(AbstractUser):
 
 
 class Basket(models.Model):
+    """Модель корзины"""
     user = models.ForeignKey(UserDressModel, on_delete=models.CASCADE)
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
@@ -87,3 +90,14 @@ class Basket(models.Model):
 
     def __str__(self):
         return f'Корзина пользователя {self.user.name} | Продукт {self.product.name}'
+
+    def sum(self):                  # Общая сумма товаров (одного наименования)
+        return self.quantity * self.product.price
+
+    def total_quantity(self):       # Общее количество товаров в корзине!
+        baskets = Basket.objects.filter(user=self.user)
+        return sum(basket.quantity for basket in baskets)
+
+    def total_sum(self):            # Общая сумма товаров в корзине!
+        baskets = Basket.objects.filter(user=self.user)
+        return sum(basket.sum() for basket in baskets)
