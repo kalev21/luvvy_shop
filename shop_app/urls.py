@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from .views import ProductView, FeedBackView, AuthRegister, LoginUser, logout_user, basket
-from .views import basket_add, basket_delete
+from .views import basket_add, basket_delete, basket_edit
 
 app_name = 'shop_app'
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('basket', basket, name='basket'),
     path('basket_add/<int:product_id>', basket_add, name='basket_add'),
     path('basket_delete/<int:id>', basket_delete, name='basket_delete'),
+    path('edit/<int:id>/<int:quantity>/', basket_edit, name='basket_edit'),
 ]

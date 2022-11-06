@@ -5,6 +5,8 @@ from django.urls import reverse_lazy, reverse
 from .utils import DataMixin
 from .forms import FeedBackForm, RegisterUserForm, LoginUserForm
 from .models import ProductModel, Basket
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 from django.views.generic import ListView, View, CreateView
 
@@ -100,6 +102,21 @@ def basket_delete(request, id=None):
     cart = Basket.objects.get(id=id)
     cart.delete()
     return HttpResponseRedirect(reverse('shop_app:basket'))
+
+
+def basket_edit(request, id, quantity):
+    if request.is_ajax():
+        cart = Basket.objects.get(id=id)
+        if quantity > 0:
+            cart.quantity = quantity
+            cart.save()
+        else:
+            cart.delete()
+        baskets = Basket.objects.filter(user=request.user)
+        context = {'baskets': baskets}
+        result = render_to_string('shop_app/basket.html', context)
+        return JsonResponse({'result': result})
+
 
 
 
