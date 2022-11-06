@@ -1,0 +1,37 @@
+{% extends 'shop_app/base.html' %}
+{% load static %}
+
+{% block title %}
+    LUVVY.Store | Обратная связь
+{% endblock %}
+
+{% block contact %}
+<section class="page-section" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase"></h2>
+            <h3 class="section-subheading text-muted">Обратная связь</h3>
+        </div>
+        <div class="row align-items-stretch mb-5 d-flex justify-content-center">
+            <div class="col-md-6 ">
+                <div class="form-group">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            {{ form.name }}
+                            {{ form.email }}
+                            {{ form.phone }}
+                        </div>
+                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                            {{ form.message }}
+                        </div>
+                        <div class="relative fullwidth col-xs-12">
+                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

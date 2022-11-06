@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+	<title>Авторизация</title>
+	<link href="{% static 'shop_app/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+<form class="form-signin d-flex justify-content-center" method="post">
+	<div class="d-flex flex-column align-items-center w-100">
+		<h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
+		{% csrf_token %}
+		{% for el in form %}
+		<div class="mb-3 w-25">
+			<div class="form-floating">
+				{{ el }}
+				{{ el.label_tag }}
+			</div>
+			{% if el.errors %}
+			<ol>
+				{% for error in el.errors %}
+				<li><strong class="text-danger">{{ error }}</strong></li>
+				{% endfor %}
+			</ol>
+			{% endif %}
+		</div>
+		{% endfor %}
+		<div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+            <a href="#">Забыли пароль?</a>
+            <a href="/register">Регистрация</a>
+        </div>
+	</div>
+</form>
+<script src="{% static 'shop_app/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="{% static 'shop_app/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'shop_app/css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>LUVVY</h1>
+        <nav>
+            <a href="/product">Коллекция</a>
+            <a href="#">Покупателям</a>
+            <a href="/contact">Контакты</a>
+        </nav>
+    </header>
+    {% block video %}{% endblock %}<br>
+    <div class="container">
+        {% block contact %}{% endblock %}
+    </div>
+    <div id="fashion">
+        {% block catalog %}{% endblock %}
+    </div>
+
+    <input type="checkbox" id="active">
+    <label for="active" class="menu-btn"><span></span></label>
+    <label for="active" class="close"></label>
+    <div class="wrapper">
+        <ul>
+            {% if request.user.is_authenticated %}
+            <li><a href="#">{{ user.username }}</a></li>
+            <li><a href="/logout">Выйти</a></li>
+            {% else %}
+            <li><a href="/login">Войти</a></li>
+            {% endif %}
+            <li><a href="/register">Регистрация</a></li>
+            <li><a href="/basket">Корзина</a></li>
+        </ul>
+    </div>
+    {% block index %}{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="{% static 'shop_app/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'shop_app/js/script.js' %}"></script>
+    <script src="{% static 'shop_app/js/scripts.js' %}"></script>
+    <script src="https://kit.fontawesome.com/c7fc2427e4.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+</body>
+</html>
