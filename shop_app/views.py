@@ -1,4 +1,5 @@
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
@@ -69,6 +70,7 @@ def logout_user(request):
     return redirect('shop_app:product')
 
 
+@login_required
 def basket(request):
     basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
     context = {
@@ -78,6 +80,7 @@ def basket(request):
     return render(request, 'shop_app/basket.html', context)
 
 
+@login_required
 def basket_add(request, product_id=None):
     """Добавление товаров в Корзину"""
 
@@ -96,6 +99,7 @@ def basket_add(request, product_id=None):
         return HttpResponseRedirect(reverse('shop_app:product'))
 
 
+@login_required
 def basket_delete(request, id=None):
     """Удаление товаров из корзины"""
 
@@ -105,19 +109,17 @@ def basket_delete(request, id=None):
 
 
 def basket_edit(request, id, quantity):
-    if request.is_ajax():
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         cart = Basket.objects.get(id=id)
         if quantity > 0:
             cart.quantity = quantity
             cart.save()
         else:
             cart.delete()
-        baskets = Basket.objects.filter(user=request.user)
-        context = {'baskets': baskets}
+        products = Basket.objects.filter(user=request.user)
+        context = {'products': products}
         result = render_to_string('shop_app/basket.html', context)
         return JsonResponse({'result': result})
-
-
 
 
 
