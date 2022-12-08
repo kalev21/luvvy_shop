@@ -121,7 +121,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 JET_THEMES = [
     {
         'theme': 'default', # название папки с темой

@@ -1,17 +1,13 @@
-<!DOCTYPE html>
+{% extends 'shop_app/base.html' %}
 {% load static %}
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Корзина</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="{% static 'shop_app/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'shop_app/css/style.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-</head>
-<body>
+
+
+{% block title %}
+    LUVVI.Shop | Корзина
+{% endblock %}
+
+
+{% block basket %}
 <div class="container">
     <div class="basket_list">
         <div class="col-lg-5">
@@ -22,6 +18,9 @@
                 </h4>
                 {% for basket in products %}
                   <div class="card mb-3">
+                      <div class="product-tumb">
+                          <img src="{{ product.image.url }}" alt="">
+                      </div>
                     <div class="card-body">
                       <h5 class="card-title">{{ basket.product.name }}</h5>
                       <p class="card-text">{{ basket.product.description }}</p>
@@ -48,19 +47,20 @@
               </div>
             </div>
                 <button type="button" class="btn btn-success btn-lg float-right">Оформить</button>
+                <a href="/product"><button type="button"
+                                    class="btn btn-success btn-lg float-right">Продолжить покупки</button></a>
         </div>
         {% else %}
+        <div class="container">
             <h4 class="mt3 mb-3 text-center">Корзина пуста!</h4>
-        {% endif %}
-</div>
-</div>
+            <a href="/product"><button type="button"
+                                    class="btn btn-success btn-lg float-right">Продолжить покупки</button></a>
+        </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="{% static 'shop_app/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'shop_app/js/basket.js' %}"></script>
-    <script src="{% static 'shop_app/js/scripts.js' %}"></script>
-    <script src="https://kit.fontawesome.com/c7fc2427e4.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-</body>
-</html>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+
+

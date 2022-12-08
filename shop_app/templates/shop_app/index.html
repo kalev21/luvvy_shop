@@ -1,22 +1,70 @@
-{% extends 'shop_app/base.html' %}
+<!DOCTYPE html>
 {% load static %}
 
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'shop_app/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'shop_app/css/style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <title>LUVVY.Shop | Главная</title>
+</head>
+<body>
+    <div id="menu">
+      <div id="menu-bar" onclick="menuOnClick()">
+        <div id="bar1" class="bar"></div>
+        <div id="bar2" class="bar"></div>
+        <div id="bar3" class="bar"></div>
+      </div>
+      <nav class="nav" id="nav">
+        <ul>
+        {% if request.user.is_authenticated %}
+        <li><a href="#">{{ user.username }}</a></li>
+        <li><a href="/logout">Выйти</a></li>
+        {% else %}
+        <li><a href="/login">Войти</a></li>
+        <li><a href="/contact">Регистрация</a></li>
+        {% endif %}
 
-{% block title %}
-    LUVVY.Store | Главная
-{% endblock %}
-
-
-{% block index %}
-    {% block video %}
-        <div id="fashion">
-            <h2>Каждое лето новая история…</h2>
-        </div>
-    {% endblock %}
-    <div class="content">
-        <video width="100%" height="100%" loop="loop" playsinline autoplay muted>
-          <source src="{% static 'shop_app/video/video_index.mp4' %}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-          Тег video не поддерживается вашим браузером.
-        </video>
+          <li><a href="/contact">Контакты</a></li>
+        </ul>
+      </nav>
     </div>
-{% endblock %}
+    <div class="menu-bg" id="menu-bg"></div>
+
+    <section id="section">
+        <div class="intro">
+            <div class="intro__header">
+                <nav>
+                    <a href="/" class="logo__site">LUVVY</a>
+                </nav>
+                <nav>
+                    <a href="/product">Каталог</a>
+                    <a href="/product">Покупателям</a>
+                    <a href="/contact">Контакты</a>
+                    <a href="/basket"><i class="fa-solid fa-cart-shopping"></i></a>
+                </nav>
+            </div>
+            <div class="intro__video">
+                <video class="video__media" src="{% static 'shop_app/video/video.mp4' %}" autoplay muted loop></video>
+            </div>
+
+            <div class="intro__content">
+                <div class="container">
+                    <h1 class="intro__title">
+                        Каждое лето, новая история...
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{% static 'shop_app/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'shop_app/js/scripts.js' %}"></script>
+    <script src="{% static 'shop_app/js/menuOn.js' %}"></script>
+    <script src="https://kit.fontawesome.com/c7fc2427e4.js" crossorigin="anonymous"></script>
+</body>
+</html>
