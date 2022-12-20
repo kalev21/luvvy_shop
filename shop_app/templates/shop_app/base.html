@@ -1,58 +1,222 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'shop_app/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'shop_app/css/style.css' %}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    <title>Блок</title>
+    <title>{% block title %} Luvvy.Store | Главная {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="{% static 'shop_app/img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'shops/img/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'shop_app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'shop_app/css/templatemo.css' %}">
+    <link rel="stylesheet" href="{% static 'shop_app/css/custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop_app/css/slick.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop_app/css/slick-theme.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="{% static 'shop_app/css/fontawesome.min.css' %}">
+
 </head>
+
 <body>
-  <div class="wrap">
-      <header class="header">
-          <div class="header__container">
-              <a href="/" class="logo__site">LUVVY</a>
-              <ul class="header__list">
-                  <li class="header__item"><a href="/" class="header__link">Home</a></li>
-                  <li class="header__item"><a href="" class="header__link">About us</a></li>
-                  <li class="header__item"><a href="" class="header__link">Gallery</a></li>
-                  <li class="header__item"><a href="/contact" class="header__link">Контакты</a></li>
-              </ul>
-          </div>
-      </header>
-      <div>
-        {% block catalog %}{% endblock %}
-      </div>
-      <div>
-        {% block basket %}{% endblock %}
-      </div>
-      <div>
-        {% block login %}{% endblock %}
-      </div>
-      <div>
-        {% block register %}{% endblock %}
-      </div>
-      <div>
-        {% block contact %}{% endblock %}
-      </div>
-  </div>
+    <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa fa-envelope mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                    <i class="fa fa-phone mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                </div>
+                <div>
+                    <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-vk fa-sm fa-fw me-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
 
 
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
 
-    <script src="{% static 'shop_app/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'shop_app/js/scripts.js' %}"></script>
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/">
+                Luvvy
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/product">Коллекции</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/card_prod">Покупателям</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex">
+                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <div class="input-group-text">
+                                <i class="fa fa-fw fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                    </a>
+
+                    <a class="nav-icon position-relative text-decoration-none" href="/basket">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ products.0.total_quantity }}</span>
+                    </a>
+
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-link">
+                        <a class="nav-link" href="#">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-link">
+                        <a class="nav-link" href="/logout">Выйти</a>
+                    </li>
+                    {% else %}
+                    <a class="nav-link">
+                        <a class="nav-link" href="/login"><i class="fa fa-fw fa-user text-dark mr-3"></i></a>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Close Header -->
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% block index %}{% endblock %}
+    {% block basket %}{% endblock %}
+    {% block catalog %}{% endblock %}
+    {% block contact %}{% endblock %}
+    {% block product_view %}{% endblock %}
+    {% block about %}{% endblock %}
+
+  <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container text-center">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Luvvy Store</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            Видное, Галины Вишневской, 10 к.1
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:010-020-0340">+7 926 136 17 82</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Покупателям</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Каталог</a></li>
+                        <li><a class="text-decoration-none" href="#">Оплата</a></li>
+                        <li><a class="text-decoration-none" href="#">Доставка</a></li>
+                        <li><a class="text-decoration-none" href="#">Возврат</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">О нас</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="/about">О бренде</a></li>
+                        <li><a class="text-decoration-none" href="/contact">Контакты</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://vk.com/"><i class="fab fa-vk fa-lg fa-fw"></i></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 bg-black py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light">
+                            Copyright &copy; 2022 Company Name
+                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="{% static 'shop_app/js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'shop_app/js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script src="{% static 'shop_app/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'shop_app/js/templatemo.js' %}"></script>
+    <script src="{% static 'shop_app/js/custom.js' %}"></script>
     <script src="{% static 'shop_app/js/basket.js' %}"></script>
-    <script src="{% static 'shop_app/js/head_index.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="https://kit.fontawesome.com/c7fc2427e4.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="{% static 'shop_app/js/scripts.js' %}"></script>
+     <script src="{% static 'shop_app/js/slick.min.js' %}"></script>
+    <!-- End Script -->
 </body>
+</html>

@@ -2,36 +2,87 @@
 {% load static %}
 
 {% block title %}
-    LUVVY.Store | Обратная связь
+    Luvvy.Store | Обратная связь
 {% endblock %}
 
+
 {% block contact %}
-<section class="page-section" id="contact">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase"></h2>
-            <h3 class="section-subheading text-muted">Обратная связь</h3>
-        </div>
-        <div class="row align-items-stretch mb-5 d-flex justify-content-center">
-            <div class="col-md-6 ">
-                <div class="form-group">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                            {{ form.name }}
-                            {{ form.email }}
-                            {{ form.phone }}
-                        </div>
-                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-                            {{ form.message }}
-                        </div>
-                        <div class="relative fullwidth col-xs-12">
-                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Отправить</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!-- Start Content Page -->
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">Связаться с нами</h1>
+            <p>
+                Уточнить статус вашего заказа и задать другие интересующие вопросы вы можете любым удобным вам способом:
+            </p>
+
+            <ul class="list-unstyled footer-link-list">
+                <li><i class="fa fa-phone mx-2"></i> +7 937 955 45 59</li>
+                <li><i class="fa fa-envelope mx-2"></i> info@company.com</li>
+                <li><i class="fa fa-location-arrow mx-2"></i> Видное, Галины Вишневской, 10 к.1</li>
+            </ul>
+
         </div>
     </div>
-</section>
+
+    <!-- Start Contact -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <form class="col-md-9 m-auto" method="post" role="form">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname"> </label>
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Введите имя:">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail"> </label>
+                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Введите e-mail:">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="inputsubject"> </label>
+                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Тема:">
+                </div>
+                <div class="mb-3">
+                    <label for="inputmessage"> </label>
+                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Ваше сообщение:" rows="8"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col text-end mt-2">
+                        <button type="submit" id="submit" name="submit" class="btn btn-success btn-lg px-3">Отправить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End Contact -->
+
+<!--<section class="page-section" id="contact">-->
+<!--    <div class="container">-->
+<!--        <div class="text-center">-->
+<!--            <h2 class="section-heading text-uppercase"></h2>-->
+<!--            <h3 class="section-subheading text-muted">Обратная связь</h3>-->
+<!--        </div>-->
+<!--        <div class="row align-items-stretch mb-5 d-flex justify-content-center">-->
+<!--            <div class="col-md-6 ">-->
+<!--                <div class="form-group">-->
+<!--                    <form method="post">-->
+<!--                        {% csrf_token %}-->
+<!--                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">-->
+<!--                            {{ form.name }}-->
+<!--                            {{ form.email }}-->
+<!--                            {{ form.phone }}-->
+<!--                        </div>-->
+<!--                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">-->
+<!--                            {{ form.message }}-->
+<!--                        </div>-->
+<!--                        <div class="relative fullwidth col-xs-12">-->
+<!--                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Отправить</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 {% endblock %}

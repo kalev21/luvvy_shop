@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class FeedBackForm(ModelForm):
     class Meta:
         model = FeedBackModel
-        fields = ['name', 'email', 'phone', 'message']
+        fields = ['name', 'email', 'subject', 'message']
         widgets = {
             'name': TextInput(attrs={
                 'class': 'form-control',
@@ -18,9 +18,9 @@ class FeedBackForm(ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Введите e-mail:',
             }),
-            'phone': TextInput(attrs={
+            'subject': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Ваш номер телефона:',
+                'placeholder': 'Тема:',
             }),
             'message': Textarea(attrs={
                 'class': 'form-control',

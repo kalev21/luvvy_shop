@@ -3,45 +3,231 @@
 
 
 {% block title %}
-  LUVVY.Shop | Каталог
+  Luvvy.Store | Каталог
 {% endblock %}
 
 
 {% block catalog %}
-<div class="container text-center">
-	<div class="row align-items-center">
-        {% for product in products %}
-        <div class="col">
-            <div class="product-card">
-              <div class="badge">Hot</div>
-              <div class="product-tumb">
-                  <figure><img src="{{ product.image.url }}" alt=""></figure>
-              </div>
-              <div class="product-details">
-                  <span class="product-category">{{ product.category }}</span>
-                  <h4><a href="">{{ product.name }}</a></h4>
-                  <p>{{ product.description }}</p>
-                  <div class="product-bottom-details">
-                      <div class="product-price">{{ product.price }}</div>
-                      <div class="product-links">
-                          <form id="form_buying_product" class="form-inline">
-                              <div class="product-cart">
-                                  <a href="{% url 'shop_app:basket_add' product.id %}">
-                                      <button type="button" class="btn btn-info">Купить</button>
-                                  </a>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
+<!-- Start Content -->
+    <div class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-3">
+                <h1 class="h2 pb-4">Категории</h1>
+                <ul class="list-unstyled templatemo-accordion">
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Пол
+                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul class="collapse show list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">Мужской</a></li>
+                            <li><a class="text-decoration-none" href="#">Женский</a></li>
+                        </ul>
+                    </li>
+<!--                    <li class="pb-3">-->
+<!--                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">-->
+<!--                            Sale-->
+<!--                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>-->
+<!--                        </a>-->
+<!--                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">-->
+<!--                            <li><a class="text-decoration-none" href="#">Sport</a></li>-->
+<!--                            <li><a class="text-decoration-none" href="#">Luxury</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Продукт
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">Костюм</a></li>
+                            <li><a class="text-decoration-none" href="#">Шорты</a></li>
+                            <li><a class="text-decoration-none" href="#">Брюки</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline shop-top-menu pb-3 pt-1">
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Все</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Мужское</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none" href="#">Женское</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 pb-4">
+                        <div class="d-flex">
+                            <select class="form-control">
+                                <option>Сортировка</option>
+                                <option>По алфавиту</option>
+                                <option>По цене</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start One Product Card -->
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 product-wap rounded-0">
+                            <div class="card rounded-0">
+                                <img class="card-img rounded-0 img-fluid" src="{{ product.image.url }}">
+                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                    <ul class="list-unstyled">
+<!--                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>-->
+                                        <li><a class="btn btn-success text-white mt-2"
+                                               href="{% url 'shop_app:view_card_add' product.id %}"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2"
+                                               href="{% url 'shop_app:basket_add' product.id %}"><i class="fas fa-cart-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a href="/product_view" class="h3 text-decoration-none">{{ product.name }}</a>
+                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                    <li>{{ product.size }}</li>
+                                    <li class="pt-2">
+                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                    <li>
+                                        <h4>{{ product.description }}</h4>
+                                    </li>
+                                </ul>
+                                <p class="text-center mb-0">{{ product.price }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% empty %}
+                        <div class="container">
+                            <p>Нет товаров!</p>
+                        </div>
+                    {% endfor %}
+                    <!-- End One Product Card -->
+                </div>
             </div>
         </div>
-        {% empty %}
-        <div class="container">
-            <p>Нет товаров!</p>
-        </div>
-        {% endfor %}
     </div>
-</div>
+    <!-- End Content -->
+
+<!--    &lt;!&ndash; Start Brands &ndash;&gt;-->
+<!--    <section class="bg-light py-5">-->
+<!--        <div class="container my-4">-->
+<!--            <div class="row text-center py-3">-->
+<!--                <div class="col-lg-6 m-auto">-->
+<!--                    <h1 class="h1">Our Brands</h1>-->
+<!--                    <p>-->
+<!--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod-->
+<!--                        Lorem ipsum dolor sit amet.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--                <div class="col-lg-9 m-auto tempaltemo-carousel">-->
+<!--                    <div class="row d-flex flex-row">-->
+<!--                        &lt;!&ndash;Controls&ndash;&gt;-->
+<!--                        <div class="col-1 align-self-center">-->
+<!--                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">-->
+<!--                                <i class="text-light fas fa-chevron-left"></i>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;End Controls&ndash;&gt;-->
+
+<!--                        &lt;!&ndash;Carousel Wrapper&ndash;&gt;-->
+<!--                        <div class="col">-->
+<!--                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">-->
+<!--                                &lt;!&ndash;Slides&ndash;&gt;-->
+<!--                                <div class="carousel-inner product-links-wap" role="listbox">-->
+
+<!--                                    &lt;!&ndash;First slide&ndash;&gt;-->
+<!--                                    <div class="carousel-item active">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_01.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_02.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_03.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_04.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;End First slide&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;Second slide&ndash;&gt;-->
+<!--                                    <div class="carousel-item">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_01.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_02.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_03.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_04.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;End Second slide&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;Third slide&ndash;&gt;-->
+<!--                                    <div class="carousel-item">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_01.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_02.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_03.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-3 p-md-5">-->
+<!--                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'shops/img/brand_04.png' %}" alt="Brand Logo"></a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;End Third slide&ndash;&gt;-->
+
+<!--                                </div>-->
+<!--                                &lt;!&ndash;End Slides&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;End Carousel Wrapper&ndash;&gt;-->
+
+<!--                        &lt;!&ndash;Controls&ndash;&gt;-->
+<!--                        <div class="col-1 align-self-center">-->
+<!--                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">-->
+<!--                                <i class="text-light fas fa-chevron-right"></i>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;End Controls&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash;End Brands&ndash;&gt;-->
+
 {% endblock %}
 

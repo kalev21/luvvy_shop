@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import ProductModel, CategoryModel, FeedBackModel, UserDressModel, Basket
+from .models import ProductModel, CategoryModel, FeedBackModel, UserDressModel, Basket, AboutModel
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext, gettext_lazy as _
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'slug', 'image_show', 'size', 'description', 'price', 'colour')
+    list_display = ('id', 'name', 'slug', 'image_show', 'size', 'description', 'summary',
+                    'specific', 'price', 'colour')
     list_display_links = ('id', 'name')
     search_fields = ('name', 'description', 'size')
     list_filter = ('name', 'price', 'size', 'colour')
@@ -29,9 +30,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class FeedBackAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'phone', 'message')
+    list_display = ('id', 'name', 'email', 'subject', 'message')
     list_display_links = ('id', 'name')
-    search_fields = ('name', 'email', 'phone')
+    search_fields = ('name', 'email', 'subject')
     list_filter = ('name', 'email')
 
 
@@ -47,8 +48,22 @@ class UserDressAdmin(UserAdmin):
     )
 
 
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ('id', 'heading', 'description', 'image')
+    list_display_links = ('id', 'heading')
+    list_filter = ('heading', 'description')
+
+    def image_show(self, obj):      # Добавление миниатюры картинки в админке
+        if obj.image:
+            return mark_safe("<img src='{}' width='60' />".format(obj.image.url))
+        return "None"
+
+    image_show.__name__ = "Картинка"
+
+
 admin.site.register(ProductModel, ProductAdmin)
 admin.site.register(CategoryModel, CategoryAdmin)
 admin.site.register(FeedBackModel, FeedBackAdmin)
 admin.site.register(UserDressModel, UserDressAdmin)
 admin.site.register(Basket)
+admin.site.register(AboutModel, AboutAdmin)

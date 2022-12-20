@@ -1,40 +1,32 @@
-{% extends 'shop_app/base.html' %}
+<!DOCTYPE html>
 {% load static %}
+<html>
+<head>
+	<title>Luvvy.Store | Регистрация</title>
+	<link rel="stylesheet" href="{% static 'shop_app/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+	{% if form.errors %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="...">
+			{{ form.errors}}
+		</div>
+	{% endif %}
+	<div class="main">
+		<input type="checkbox" id="chk" aria-hidden="true">
+			<div class="signup">
+				<form action="" method="post">
+					{% csrf_token %}
+					<label for="chk" aria-hidden="true">Регистрация</label>
 
+					{{ form.username }}
+					{{ form.email }}
+					{{ form.password1 }}
+					{{ form.password2 }}
 
-{% block title %}
-  LUVVY.Shop | Регистрация
-{% endblock %}
-
-
-{% block register %}
-<div class="container">
-    <form class="form-signin d-flex justify-content-center" method="post">
-        <div class="d-flex flex-column align-items-center w-100">
-            <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
-            {% csrf_token %}
-            {% for el in form %}
-            <div class="mb-3 w-25">
-                <div class="form-floating">
-                    {{ el }}
-                    {{ el.label_tag }}
-                </div>
-                {% if el.errors %}
-                <ol>
-                    {% for error in el.errors %}
-                    <li><strong class="text-danger">{{ error }}</strong></li>
-                    {% endfor %}
-                </ol>
-                {% endif %}
-            </div>
-            {% endfor %}
-            <div>
-                <button type="submit" class="btn btn-primary">Регистрация</button>
-                <a href="#">Забыли пароль?</a>
-            </div>
-        </div>
-    </form>
-</div>
-{% endblock %}
-
-
+					<button type="submit">Регистрация</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>
