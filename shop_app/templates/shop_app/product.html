@@ -92,26 +92,21 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="{% url 'shop_app:view_card_add' product.id %}" class="h3 text-decoration-none">{{ product.name }}</a>
-                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                <a href="{% url 'shop_app:view_card_add' product.id %}"
+                                   class="d-flex justify-content-center h3 text-decoration-none">{{ product.name }}</a>
+                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0 ">
                                     <li>{{ product.size }}</li>
-                                    <li class="pt-2">
-                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                    </li>
+<!--                                    <li class="pt-2">-->
+<!--                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>-->
+<!--                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>-->
+<!--                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>-->
+<!--                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>-->
+<!--                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>-->
+<!--                                    </li>-->
                                 </ul>
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <h4>{{ product.description }}</h4>
-                                    </li>
-                                </ul>
-                                <p class="text-center mb-0">{{ product.price }}</p>
+                                <p class="text-center mb-0">{{ product.price }} р.</p>
                             </div>
                         </div>
-
                     </div>
                     {% empty %}
                         <div class="container">
