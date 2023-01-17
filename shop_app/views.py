@@ -31,6 +31,7 @@ class ProductView(ListView):
         return ProductModel.objects.order_by('-id')
 
 
+
 def view_card_add(request, product_id):
     """ Превью товара """
     product = ProductModel.objects.filter(id=product_id)
